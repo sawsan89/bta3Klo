@@ -4,12 +4,20 @@ import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Layout from "./Layout";
 import axios from "axios";
+import BasicProfilePic from './basic-pf-pic.jpg';
+import Image from 'react-bootstrap/Image'
+
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      body: ""
+          body: "",
+          name:'',
+          email:'',
+          location:'',
+          numOfPepole:'',
+          rate:''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleServiceAdd = this.handleServiceAdd.bind(this)
@@ -21,26 +29,68 @@ class Profile extends Component {
 
   }
 
-  //send data to database
+  //send data to database to save
   handleSubmit(event) {
     event.preventDefault();
     const payload = {
       body: this.state.body
     }
 
-    //sending data to server
-    axios.post('https://localhost:5000/profile', payload)
+    // data to server
+    axios.post('http://localhost:5000/signup/update', payload)
       .then(function (response) {
-        console.log(response);
+        console.log(response)
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error)
       });
   }
+  //get profile information
+  profileDetails=(email)=>{
+    console.log(email);
+    axios.get("http://localhost:5000/profile"+email)
+    .then(res=>{
+        console.log(res);
+        this.setState({ 
+          name:this.state.name,
+          email:this.state.email,
+          location:this.state.location,
+          numOfPepole:this.state.numOfPepole,
+          rate:this.state.rate
+        }
+        );
+        
+    })
+    .catch(err=>console.log(err))
+}
 
+componentDidMount(){
+  this.profileDetails(this.state.email);
+ }
+
+  // getService() {
+  //   axios.post('http://localhost:5000')
+  //     .then(function (response) {
+  //       console.log(response)
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error)
+  //     });
+  // }
 
   render() {
     return (
+      <>
+      <div>
+        <Image class = 'proImg' style={{height:'250px',width:'300'}} src={BasicProfilePic} responsive />
+            <ListGroup horizontal>
+            <ListGroup.Item>Name:{this.state.name}</ListGroup.Item>
+            <ListGroup.Item>location :{this.state.location}</ListGroup.Item>
+            <ListGroup.Item>Rate:{this.state.rate}</ListGroup.Item>
+            <ListGroup.Item>client:{this.state.numOfPepole}</ListGroup.Item>
+            </ListGroup>
+      </div>
+
       <div id="Profile">
         <Layout>
           <Form onSubmit={this.handleSubmit}>
@@ -58,6 +108,7 @@ class Profile extends Component {
           <Button color="primary" size="sm">Done</Button>{" "}
         </Layout>
       </div>
+      </>
     );
   }
 }
