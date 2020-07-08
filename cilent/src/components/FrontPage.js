@@ -16,7 +16,8 @@ class FrontPage extends Component {
       value: "teacher",
       users:[],
       val:[],
-      val2:[]
+      val2:[],
+      val3:[]
       
     };
         this.handleChange = this.handleChange.bind(this)
@@ -95,6 +96,26 @@ handleSubmit1(event) {
        console.log(error)
    });
 
+
+   
+   axios.get
+  ("http://localhost:5000/search")
+   .then((res) => {
+       console.log(this.state.value)
+        
+         console.log(res.data.length)
+         var x=Math.floor(Math.random()*res.data.length); 
+         console.log(res.data[x])
+         var arr3=[]
+         arr3.push(res.data[x])
+         this.setState({
+           val3:arr3
+         })
+   }).catch((error) => {
+       console.log(error)
+   });
+
+
  }
 
  //handle chande value for select (droplist input )
@@ -149,6 +170,7 @@ if(user.service==this.state.value){
             <div>{user.name}</div>
             <div>{user.email}</div>
             <div>{user.service}</div>
+            <div>{user.location}</div>
             <br></br><br></br><br></br>
     </Card.Text>
     </Card.Body>
@@ -177,7 +199,7 @@ if(user.service==this.state.value){
   return (
 <CardDeck>
   <Card>
-    <Card.Img variant="top" src="https://tse1.mm.bing.net/th?id=OIP.Mp7qFB6wwzdBfFSYxNAomgHaE7&pid=Api&P=0&w=262&h=175" />
+    <Card.Img variant="top" src="https://tse3.mm.bing.net/th?id=OIP.iZsAXH5tvmQw7csH95do0QHaHa&pid=Api&P=0&w=300&h=300" />
     <Card.Body>
       <Card.Title>randomly card</Card.Title>
       <Card.Text>
@@ -209,7 +231,7 @@ if(user.service==this.state.value){
   return (
 <CardDeck>
   <Card>
-    <Card.Img variant="top" src="https://tse1.mm.bing.net/th?id=OIP.Mp7qFB6wwzdBfFSYxNAomgHaE7&pid=Api&P=0&w=262&h=175" />
+    <Card.Img variant="top" src="https://tse3.mm.bing.net/th?id=OIP.iZsAXH5tvmQw7csH95do0QHaHa&pid=Api&P=0&w=300&h=300" />
     <Card.Body>
       <Card.Title>randomly card</Card.Title>
       <Card.Text>
@@ -231,11 +253,41 @@ if(user.service==this.state.value){
 <br></br><br></br><br></br>
 </div>  
 
+{/*this div to render third randomly iformation */}
+
+<div style={h2}>
+{this.state.val3.map(v3 => 
+
+  {
+  return (
+<CardDeck>
+  <Card>
+    <Card.Img variant="top" src="https://tse3.mm.bing.net/th?id=OIP.iZsAXH5tvmQw7csH95do0QHaHa&pid=Api&P=0&w=300&h=300" />
+    <Card.Body>
+      <Card.Title>randomly card</Card.Title>
+      <Card.Text>
+      <div>{v3.name}</div>
+      <div>{v3.email}</div>
+      <div>{v3.location}</div>
+      <div>{v3.service}</div>
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+    <br></br><br></br><br></br>
+    </Card.Footer>
+  </Card>
+  
+</CardDeck>
+  )
+}
+)}
+<br></br><br></br><br></br>
+</div>  
+
 
 
 
 </div>
-
 
 
 </div>
