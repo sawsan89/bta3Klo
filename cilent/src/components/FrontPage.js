@@ -316,5 +316,6 @@ const h2={
   "background":"white",
  " -webkit-flex": "1",/* Safari */
   "-ms-flex":" 1", /* IE 10 */
-  "flex": "1" /* Standard syntax */
+  "flex": "1" ,/* Standard syntax */
+  "background": "#48D1CC"
 }
