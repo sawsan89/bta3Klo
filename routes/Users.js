@@ -21,10 +21,12 @@ router.post('/signup', (req, res) => {
           if (err) throw err;
           console.log
           //add new user to the db
+          var value = req.body.service;
           const newUser = new User({
             name: req.body.name,
             email: req.body.email,
-            password: hash
+            password: hash,
+            category:req.body.category,
           });
           console.log(newUser)
           newUser

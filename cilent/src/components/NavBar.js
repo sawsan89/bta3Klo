@@ -5,33 +5,15 @@ import AuthService from "../services/auth.service";
 
 
 class NavBar extends Component {
-    constructor(props) {
-        super(props);
-        this.logOut = this.logOut.bind(this);
-    
-        this.state = {
-          currentUser: undefined
-        };
-      }
-      componentDidMount() {
-        const user = AuthService.getCurrentUser();
-    
-        if (user) {
-          this.setState({
-            currentUser: user
-          });
-        }
-      }
-    logOut(event) {
-        event.preventDefault()
+
+    logOut(e) {
+        e.preventDefault()
         localStorage.removeItem('usertoken')
-        this.props.history.push('/')
+        this.props.history.push(`/`)
     }
 
 
     render() {
-
-        const {currentUser} = this.state;
         const loginSingUpLink = (
                 <ul className="navbarNav">
                     <li id="navItemLogin">
