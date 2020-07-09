@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom'
+import AuthService from "../services/auth.service";
+
 
 
 class NavBar extends Component {
-    logOut(event) {
-        event.preventDefault()
+
+    logOut(e) {
+        e.preventDefault()
         localStorage.removeItem('usertoken')
-        this.props.history.push('/')
+        this.props.history.push(`/`)
     }
 
 
@@ -25,7 +28,7 @@ class NavBar extends Component {
                         <NavLink style={{color: "White"}} to="/profile" className="navLink">Profile</NavLink>
                     </li>
                     <li id="navItemLogout">
-                        <a href="" onClick={this.logOut.bind(this)} className="navLink">Logout</a>
+                        <a href="" onClick={this.logOut} className="navLink">Logout</a>
                     </li>
                 </ul>
             )

@@ -45,17 +45,17 @@ app.use('/', Users)
 
 
 const User = require('./models/User');
-//function to get all data 
-app.get("/search", function(req, res)  {
-  User.find(function(err,user)  {
-      if(err){
-          throw err;
-      }
-      console.log(user)
-      res.json(user);
-  });
-  })
-  
+//function to get all data
+app.get("/search", function (req, res) {
+    User.find(function (err, user) {
+        if (err) {
+            throw err;
+        }
+        console.log(user)
+        res.json(user);
+    });
+})
+
 
 
 

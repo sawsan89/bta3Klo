@@ -8,6 +8,8 @@ import axios from "axios";
 import StarRatingComponent from 'react-star-rating-component';
 import BasicProfilePic from './basic-pf-pic.jpg';
 import Image from 'react-bootstrap/Image'
+import CardGroup from 'react-bootstrap/CardGroup'
+
 
 class Profile extends Component {
   constructor(props) {
@@ -16,7 +18,6 @@ class Profile extends Component {
       body: "",
       posts: [],
       rating: 1,
-      rating: 1,
       body: "",
       name: '',
       email: '',
@@ -24,6 +25,7 @@ class Profile extends Component {
       numOfPepole: '',
       rate: '',
       posts: []
+
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleServiceAdd = this.handleServiceAdd.bind(this)
@@ -66,17 +68,18 @@ class Profile extends Component {
         }
         );
 
+
       })
       .catch(err => console.log(err))
   }
 
-  componentDidMount() {
-    this.profileDetails(this.state.email);
-  }
 
   componentDidMount() {
+    this.profileDetails(this.state.email);
     this.getService();
   }
+
+
 
   getService() {
     const that = this;
@@ -104,18 +107,34 @@ class Profile extends Component {
   onStarClick(nextValue, prevValue, name) {
     this.setState({ rating: nextValue });
   }
+  service(event) {
+    alert("You can Contact me in My Email taha.mohammad@gmail.com")
+  }
+  done(event) {
+    alert("Thank you Please Rate Me ")
+  }
 
   render() {
+
+    const { currentUser } = this.state;
+    console.log(this.state.currentUser)
+
     const { rating } = this.state;
+
     return (
       <>
         <div>
-          <Image class='proImg' style={{ height: '250px', width: '300' }} src={BasicProfilePic} responsive />
+          <Image className='proImg' style={{ height: '250px', width: '300' }} src={BasicProfilePic} />
           <ListGroup horizontal>
-            <ListGroup.Item>Name:{this.state.name}</ListGroup.Item>
+            {/* <ListGroup.Item>Name:{this.state.name}</ListGroup.Item>
             <ListGroup.Item>location :{this.state.location}</ListGroup.Item>
             <ListGroup.Item>Rate:{this.state.rate}</ListGroup.Item>
-            <ListGroup.Item>client:{this.state.numOfPepole}</ListGroup.Item>
+            <ListGroup.Item>client:{this.state.numOfPepole}</ListGroup.Item> */}
+            <ListGroup.Item>Name: Taha</ListGroup.Item>
+            <ListGroup.Item>location: Mars</ListGroup.Item>
+            <ListGroup.Item>Rate: 4.5</ListGroup.Item>
+            <ListGroup.Item>client: 12</ListGroup.Item>
+            <ListGroup.Item>Category: Teaching</ListGroup.Item>
           </ListGroup><br></br><br></br><br></br>
         </div><div id="Profile">
           <Layout>
@@ -146,18 +165,50 @@ class Profile extends Component {
                 )
               }
               )}
-              <br></br><br></br><br></br>
+              <br></br><br></br>
             </div>
-            <Button color="primary" size="sm">Hire Me!!</Button>{" "}
-            <Button color="primary" size="sm">Done</Button>{" "}
+
             <div>
-              <StarRatingComponent
-                name="rate1"
-                starCount={5}
-                value={rating}
-                onStarClick={this.onStarClick.bind(this)}
-              />
+              <CardGroup>
+                <Card
+                  bg="Secondary" text="dark"
+                  style={{ width: '18rem' }}
+                >
+                  <Card.Header>Teaching Math</Card.Header>
+                  <Card.Body>
+                    <Card.Title>Math </Card.Title>
+                    <Card.Text>
+                      I teach Math classes from 5th grade till 10th grade
+      </Card.Text>
+                  </Card.Body>
+                </Card>{"  "}
+                <Card
+                  bg="Secondary" text="dark"
+                  style={{ width: '18rem' }}
+                >
+                  <Card.Header>Teaching Science</Card.Header>
+                  <Card.Body>
+                    <Card.Title>Science </Card.Title>
+                    <Card.Text>
+                      I teach Science for classes from 3rd grade till 7th grade
+      </Card.Text>
+                  </Card.Body>
+                </Card>
+              </CardGroup>
+              <br></br>
+              <Button color="primary" onClick={this.service} size="sm">Hire Me!!</Button>{" "}
+              <Button color="primary" onClick={this.done} size="sm">Done</Button>{" "}
+              <br></br>
+              <div id="rate">
+                <StarRatingComponent
+                  name="rate1"
+                  starCount={5}
+                  value={rating}
+                  onStarClick={this.onStarClick.bind(this)}
+                />
+              </div>
             </div>
+
           </Layout>
         </div>
       </>
