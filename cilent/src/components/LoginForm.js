@@ -44,7 +44,7 @@ class SignInForm extends Component {
     render() {
         return (
           <>
-          <img src={logo} alt='Logo' className='logo'></img>
+          {/* <img src={logo} alt='Logo' className='logo'></img> */}
         <div className="form">
             <form onSubmit={this.handleSubmit} >
             <div>
@@ -59,8 +59,8 @@ class SignInForm extends Component {
                 <input type="password" id="passwordLog" placeholder="Enter your password" autoComplete="off" name="password" value={this.state.password} onChange={this.handleChange} />
               </div>
 <br></br>
-              <div>
-                  <button id='logBttn'  disabled={this.state.loading}>Sign In</button> Don't have an account ? <Link to="signup">SignUp</Link> {/*TODO add link to send to signUp */}
+              <div id= 'xx'>
+                  <button id='logBttn'  disabled={this.state.loading}>Sign In</button> Don't have an account ? <Link id='x' to="signup">SignUp</Link> {/*TODO add link to send to signUp */}
               </div>
             </form>
           </div>

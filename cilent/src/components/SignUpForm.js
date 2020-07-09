@@ -50,7 +50,7 @@ class SignUpForm extends Component {
     render() {
         return (
             <>
-            <img src={logo} alt='Logo' className='logo'></img>
+            {/* <img src={logo} alt='Logo' className='logo'></img> */}
         <div className="form">
             <form onSubmit={this.handleSubmit}>
             <div >
@@ -77,13 +77,16 @@ class SignUpForm extends Component {
 <br></br>
 
 <div>
-                <label id="service">service</label>
+
+
+                <label id="service">Service</label>
+
 <br></br>
                 <input type="text"  placeholder="Enter your service" name="service" autoComplete="off" value={this.state.service} onChange={this.handleChange} />
             </div>
 <br></br>
             <div className="FormField">
-                <button id="signBttn">Sign Up</button> I'm already member <Link to="/login">Login</Link> {/*TODO: send me to the log in */}
+                <button id="signBttn">Sign Up</button> I'm already member <Link id='zz' to="/login">Login</Link> {/*TODO: send me to the log in */}
             </div>
             </form>
         </div>
