@@ -13,7 +13,7 @@ body {
 /* Login & SignUp Page */
 .form {
     border-radius: 25px;
-    border: 3px solid #f4511e;
+    border: 3px solid #98c6e6;
     padding: 40px;
     width: 400px;
     height: 150px; 
@@ -134,12 +134,12 @@ border-radius: 8px;
     position: relative;
     overflow: hidden;
     height: 60px;
-    background-color: #f4511e;
+    background-color: #C0C0C0;
 }
 
 #navItemPro {
   border-radius: 12px;
-  background-color: #24478f;
+  background-color: rgb(103, 162, 250);
   float: right;
   position: absolute;
   padding: 10px;
@@ -151,7 +151,7 @@ border-radius: 8px;
 #navItemPro {
   display: inline-block;
   border-radius: 12px;
-  background-color: #24478f;
+  background-color: #6495ED;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -164,7 +164,7 @@ border-radius: 8px;
 
 #navItemHome {
   border-radius: 12px;
-  background-color: #24478f;
+  background-color: #6495ED;
   float: none;
   position: absolute;
   padding: 10px;
@@ -176,7 +176,7 @@ border-radius: 8px;
 #navItemHome {
   display: inline-block;
   border-radius: 12px;
-  background-color: #24478f;
+  background-color: #6495ED;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -189,7 +189,7 @@ border-radius: 8px;
 
 #navItemLogin {
   border-radius: 12px;
-  background-color: #24478f;
+  background-color: #6495ED;
   float: left;
   position: absolute;
   padding: 10px;
@@ -201,7 +201,7 @@ border-radius: 8px;
 #navItemLogin {
   display: inline-block;
   border-radius: 12px;
-  background-color: #24478f;
+  background-color: #6495ED;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -214,7 +214,7 @@ border-radius: 8px;
 
 #navItemLogout {
   border-radius: 12px;
-  background-color: #24478f;
+  background-color: #6495ED;
   float: left;
   position: absolute;
   padding: 10px;
@@ -226,7 +226,7 @@ border-radius: 8px;
 #navItemLogout {
   display: inline-block;
   border-radius: 12px;
-  background-color: #24478f;
+  background-color: #6495ED;
   border: none;
   color: #FFFFFF;
   text-align: center;

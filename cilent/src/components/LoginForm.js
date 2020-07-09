@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { login } from './UserMethods'
+// import { login } from './UserMethods'
 import StyleSheet from './StyleSheet.css';
 import logo from './Logo.png';
+import AuthService from "../services/auth.service";
+
 
 class SignInForm extends Component {
     constructor(props) {
@@ -30,7 +32,7 @@ class SignInForm extends Component {
           password: this.state.password
         }
         
-        login(user).then(res => {
+        AuthService.login(user ).then(res => {
           if (res) {
             this.setState({loading : true});
             console.log("logged ")
@@ -44,7 +46,7 @@ class SignInForm extends Component {
           <>
           <img src={logo} alt='Logo' className='logo'></img>
         <div className="form">
-            <form onSubmit={this.handleSubmit}  onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} >
             <div>
                 <label id='emLog'>E-Mail Address</label>
 <br></br>

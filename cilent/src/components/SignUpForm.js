@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { singUp } from './UserMethods'
+// import { singUp } from './UserMethods'
 import { Link } from 'react-router-dom'
 import StyleSheet from './StyleSheet.css';
 import logo from './Logo.png';
 import Axios from 'axios';
+import AuthService from "../services/auth.service";
+
 
 class SignUpForm extends Component {
     constructor(props) {
@@ -37,7 +39,7 @@ class SignUpForm extends Component {
         }
 
         //send values to DB
-            singUp(newUser).then(res => {
+        AuthService.register(newUser).then(res => {
                 this.setState({
                     successful: true
                   });
@@ -75,9 +77,9 @@ class SignUpForm extends Component {
 <br></br>
 
 <div>
-                <label id="service">Password</label>
+                <label id="service">service</label>
 <br></br>
-                <input type="text"  placeholder="Enter your service" name="password" autoComplete="off" value={this.state.service} onChange={this.handleChange} />
+                <input type="text"  placeholder="Enter your service" name="service" autoComplete="off" value={this.state.service} onChange={this.handleChange} />
             </div>
 <br></br>
             <div className="FormField">
