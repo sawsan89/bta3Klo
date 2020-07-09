@@ -10,6 +10,8 @@ import StarRatingComponent from 'react-star-rating-component';
 
 import BasicProfilePic from './basic-pf-pic.jpg';
 import Image from 'react-bootstrap/Image'
+import AuthService from "../services/auth.service";
+
 
 
 
@@ -21,13 +23,14 @@ class Profile extends Component {
      
       rating: 1,
           body: "",
-          name:'',
+          name:this.props.name,
           email:'',
           location:'',
           numOfPepole:'',
           rate:'',
+          posts: [],
+          currentUser: AuthService.getCurrentUser()
 
-      posts: []
 
     }
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -77,12 +80,10 @@ class Profile extends Component {
 
 componentDidMount(){
   this.profileDetails(this.state.email);
+  this.getService();
  }
 
-  componentDidMount() {
-    this.getService();
-  }
-
+  
   getService() {
     const that = this;
     axios
@@ -111,12 +112,17 @@ componentDidMount(){
   }
 
   render() {
+
+    const { currentUser } = this.state;
+    console.log(this.state.currentUser)
+
     const { rating } = this.state;
+
     return (
 
       <>
       <div>
-        <Image class = 'proImg' style={{height:'250px',width:'300'}} src={BasicProfilePic} responsive />
+        <Image className = 'proImg' style={{height:'250px',width:'300'}} src={BasicProfilePic}  />
             <ListGroup horizontal>
             <ListGroup.Item>Name:{this.state.name}</ListGroup.Item>
             <ListGroup.Item>location :{this.state.location}</ListGroup.Item>
