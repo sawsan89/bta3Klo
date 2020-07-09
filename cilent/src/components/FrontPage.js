@@ -42,8 +42,8 @@ handleSubmit1(event) {
    axios.get
    ("http://localhost:5000/search")
     .then((res) => {
-        // console.log(this.state.value)
-        //   console.log(res)
+        console.log(this.state.value)
+        console.log(res)
         //  console.log(this.state.users)
           this.setState({
             users:res.data
