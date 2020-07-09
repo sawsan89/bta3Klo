@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Layout from "./Layout";
 import axios from "axios";
+
+import StarRatingComponent from 'react-star-rating-component';
+
 import BasicProfilePic from './basic-pf-pic.jpg';
 import Image from 'react-bootstrap/Image'
+
 
 
 class Profile extends Component {
@@ -13,12 +18,14 @@ class Profile extends Component {
     super(props);
     this.state = {
 
+     
+      rating: 1,
           body: "",
           name:'',
           email:'',
           location:'',
           numOfPepole:'',
-          rate:''
+          rate:'',
 
       posts: []
 
@@ -81,6 +88,7 @@ componentDidMount(){
     axios
       .get("http://localhost:5000/profile")
       .then((response) => {
+        console.log(response)
         that.setState({ posts: response.data });
       })
       .catch((err) => {
@@ -98,8 +106,14 @@ componentDidMount(){
     ))
   }
 
+  onStarClick(nextValue, prevValue, name) {
+    this.setState({ rating: nextValue });
+  }
+
   render() {
+    const { rating } = this.state;
     return (
+
       <>
       <div>
         <Image class = 'proImg' style={{height:'250px',width:'300'}} src={BasicProfilePic} responsive />
@@ -111,6 +125,7 @@ componentDidMount(){
             </ListGroup>
       </div>
 
+
       <div id="Profile">
         <Layout>
           <Form onSubmit={this.handleSubmit}>
@@ -121,14 +136,40 @@ componentDidMount(){
             <Button color="primary" size="sm" type="submit">Add Service</Button>
           </Form>
           <div className="fromService">{this.displayService(this.state.posts)}</div>
-          <ListGroup>
-            <ListGroup.Item>Service 1</ListGroup.Item>
-            <ListGroup.Item>Service 2</ListGroup.Item>
-          </ListGroup>{" "}
+
+          <div>
+            {this.state.posts.map(post => {
+              return (
+                <Card bg="Secondary"
+                  text={post.toLowerCase() === 'light' ? 'dark' : 'white'}
+                  style={{ width: '18rem' }}>
+                  <Card.Body>
+                    <Card.Text>
+                      <div>{post}</div>
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <br></br><br></br><br></br>
+                  </Card.Footer>
+                </Card>
+              )
+            }
+            )}
+            <br></br><br></br><br></br>
+          </div>
           <Button color="primary" size="sm">Hire Me!!</Button>{" "}
           <Button color="primary" size="sm">Done</Button>{" "}
+          <div>
+            <StarRatingComponent
+              name="rate1"
+              starCount={5}
+              value={rating}
+              onStarClick={this.onStarClick.bind(this)}
+            />
+          </div>
         </Layout>
       </div>
+
       </>
     );
   }
