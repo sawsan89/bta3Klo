@@ -41,6 +41,32 @@ var Users = require('./routes/Users')
 
 app.use('/', Users)
 
+
+
+
+const User = require('./models/User');
+//function to get all data 
+app.get("/search", function(req, res)  {
+  User.find(function(err,user)  {
+      if(err){
+          throw err;
+      }
+      console.log(user)
+      res.json(user);
+  });
+  })
+  
+
+
+
+
+
+
+
+
+
+
+
 app.listen(port, () => {
     console.log(`Server is running on ${port} Visit https://localhost:${port}`)
 })
